@@ -22,8 +22,20 @@ class BinaryTree
   end
 
   def possibilities(morse)
-    sub_root = root
+    collect_possibilities = []
+    parent_root = root
+    left_sub_root = root
+    right_sub_root = root
+    morse.split('') do |pulse|
+      if pulse.eql?('?')
+        left_sub_root = left_sub_root.left
+        right_sub_root = right_sub_root.right
+      end
+    end
 
+    collect_possibilities << left_sub_root.value
+    collect_possibilities << right_sub_root.value
+    collect_possibilities
   end
 
   class Error < StandardError; end
