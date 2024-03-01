@@ -106,7 +106,7 @@ RSpec.describe BinaryTree do
       let(:morse_code) { '?' }
 
       it 'can be E or T' do
-        expect(binary_tree.find(morse_code)).to eq(%w[E T])
+        expect(binary_tree.possibilities(morse_code)).to eq(%w[E T])
       end
     end
   end
