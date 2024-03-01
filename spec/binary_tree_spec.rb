@@ -109,5 +109,13 @@ RSpec.describe BinaryTree do
         expect(binary_tree.possibilities(morse_code)).to eq(%w[E T])
       end
     end
+
+    context 'when .?' do
+      let(:morse_code) { '.?' }
+
+      it 'can be I or A' do
+        expect(binary_tree.possibilities(morse_code)).to eq(%w[I A])
+      end
+    end
   end
 end
