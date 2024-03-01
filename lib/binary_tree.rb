@@ -27,6 +27,11 @@ class BinaryTree
     left_sub_root = root
     right_sub_root = root
     morse.split('') do |pulse|
+      if pulse.eql?('.')
+        left_sub_root = left_sub_root.left
+        right_sub_root = right_sub_root.left
+      end
+
       if pulse.eql?('?')
         left_sub_root = left_sub_root.left
         right_sub_root = right_sub_root.right
