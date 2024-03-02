@@ -29,6 +29,11 @@ class BinaryTree
     insert_at_node(root, new_node)
   end
 
+  def traverse(&block)
+    traverse_at_node(root, &block)
+  end
+
+
   class Error < StandardError; end
   # Your code goes here...
   private
@@ -43,5 +48,13 @@ class BinaryTree
 
       insert_at_node(tree_node.right, new_node)
     end
+  end
+
+  def traverse_at_node(node, &block)
+    return if node.nil?
+
+    traverse_at_node(node.left, &block)
+    yield node.value if block_given?
+    traverse_at_node(node.right, &block)
   end
 end
