@@ -101,12 +101,46 @@ RSpec.describe BinaryTree do
 
   end
 
-  describe '#possibilities' do
-    context 'when ?' do
-      let(:morse_code) { '?' }
+  describe '#insert' do
+    let(:binary_tree) { described_class.new() }
 
-      it 'can be E or T' do
-        expect(binary_tree.find(morse_code)).to eq(%w[E T])
+    before { binary_tree.insert(7) }
+
+    context 'when insert integer value' do
+      it 'has root value equal to 7' do
+        expect(binary_tree.root.value).to eq(7)
+      end
+    end
+
+    context 'when insert number less than root value' do
+      before { binary_tree.insert(5) }
+
+      it 'has left node value equal to 5' do
+        expect(binary_tree.root.left.value).to eq(5)
+      end
+
+      context 'when insert number less than the previous one' do
+        before { binary_tree.insert(3) }
+
+        it 'has left.left node value equal to 3' do
+          expect(binary_tree.root.left.left.value).to eq(3)
+        end
+      end
+    end
+
+    context 'when insert number greater than root value' do
+      before { binary_tree.insert(9) }
+
+      it 'has right node value equal to 9' do
+        expect(binary_tree.root.right.value).to eq(9)
+      end
+
+      context 'when insert number greater than the previous one' do
+        before { binary_tree.insert(11) }
+
+        it 'has right.right node value equal to 11' do
+          expect(binary_tree.root.right.right.value).to eq(11)
+        end
       end
     end
   end

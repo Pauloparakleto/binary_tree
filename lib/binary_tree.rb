@@ -5,7 +5,7 @@
 class BinaryTree
   attr_accessor :root
 
-  def initialize(node)
+  def initialize(node=Node.new)
     @root = node
   end
 
@@ -21,11 +21,27 @@ class BinaryTree
     sub_root.value
   end
 
-  def possibilities(morse)
-    sub_root = root
+  def insert(number)
+    return root.value = number if root.value.nil?
 
+    new_node = Node.new(number)
+
+    insert_at_node(root, new_node)
   end
 
   class Error < StandardError; end
   # Your code goes here...
+  private
+
+  def insert_at_node(tree_node, new_node)
+    if new_node.value < tree_node.value
+      return tree_node.left = new_node if tree_node.left.nil?
+
+      insert_at_node(tree_node.left, new_node)
+    else
+      return tree_node.right = new_node if tree_node.right.nil?
+
+      insert_at_node(tree_node.right, new_node)
+    end
+  end
 end
