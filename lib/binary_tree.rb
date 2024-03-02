@@ -35,9 +35,9 @@ class BinaryTree
 
   def insert_at_node(tree_node, new_node)
     if new_node.value < tree_node.value
-      return insert_at_node(tree_node.left, new_node) unless tree_node.left.nil?
+      return tree_node.left = new_node if tree_node.left.nil?
 
-      return tree_node.left = new_node
+      return insert_at_node(tree_node.left, new_node)
     end
 
     return insert_at_node(tree_node.right, new_node) unless tree_node.right.nil?
