@@ -8,10 +8,10 @@ class BinarySearch
   end
 
   def search
-    left = 0
-    right = array.length - 1
+    left = 0 # this is going to be an argument in the recursive version
+    right = array.length - 1 # this is also going to be an argument in the recursive version
 
-    while left <= right
+    while left <= right # this is going to be the basic case on the recursive version
       midst_index = (left + right) / 2
       return midst_index if number.eql?(array[midst_index])
 
@@ -22,11 +22,12 @@ class BinarySearch
       end
     end
 
-    INDEX_NOT_FOUND
+    INDEX_NOT_FOUND # this is going to be the result from the guard clause in the recursive version
   end
 
   def recursive_search(left=0, right=((array.length) - 1))
-    return INDEX_NOT_FOUND if left > right
+    return INDEX_NOT_FOUND if left > right # the basic case is the loop terminator condition from the interactive one.
+    # returning the guard clause above is the final result from the iteractive version
 
     midst_index = (left + right) / 2
     return midst_index if number.eql?(array[midst_index])
