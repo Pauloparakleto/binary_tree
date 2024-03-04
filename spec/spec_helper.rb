@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "binary_tree"
+require "binary_search"
 require "node"
 
 RSpec.configure do |config|
