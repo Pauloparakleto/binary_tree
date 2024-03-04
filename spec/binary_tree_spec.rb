@@ -101,6 +101,29 @@ RSpec.describe BinaryTree do
 
   end
 
+  describe '#transverse' do
+    let(:binary_tree) { described_class.new() }
+    let(:sorted_array) { [] }
+
+    before do
+      binary_tree.insert(7)
+      binary_tree.insert(9)
+      binary_tree.insert(3)
+      binary_tree.insert(5)
+      binary_tree.insert(13)
+      binary_tree.insert(11)
+
+    end
+
+    context 'when block given' do
+      it 'transverses at node' do
+        binary_tree.traverse { |x| sorted_array << x }
+
+        expect(sorted_array).to eq([3, 5, 7, 9, 11, 13])
+      end
+    end
+  end
+
   describe '#insert' do
     let(:binary_tree) { described_class.new() }
 
