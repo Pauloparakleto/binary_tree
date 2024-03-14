@@ -2,7 +2,13 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require "binary_tree"
+require "./lib/binary_tree"
+require './lib/enhanced_writer'
+require './lib/simple_writer'
+require './lib/writer_decorator'
+require './lib/numbering_writer'
+require './lib/check_summing_writer'
+require './lib/time_stamping_writer'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
