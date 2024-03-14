@@ -5,6 +5,8 @@ require "binary_search"
 require "node"
 require "simple_writer"
 require "writer_decorator"
+require "numbering_writer"
+require "time_stamping_writer"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
