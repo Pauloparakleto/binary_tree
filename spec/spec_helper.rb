@@ -3,6 +3,7 @@
 require "binary_tree"
 require "binary_search"
 require "node"
+require "simple_writer"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
