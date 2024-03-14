@@ -4,13 +4,13 @@ RSpec.describe NumberingWriter do
   after { File.delete(path_to_file) }
 
   let(:simple_writer) { SimpleWriter.new(path_to_file) }
-  let(:message) { "Akira Toryama" }
+  let(:message) { "Akira Toriyama" }
   let(:path_to_file) { 'spec/tmp/simple_out.txt' }
 
   it 'delegates writes to simple text' do
     numbering_writer.write_line(message)
     numbering_writer.close
 
-    expect(File.open(path_to_file).read).to eq("1: Akira Toryama\n")
+    expect(File.open(path_to_file).read).to eq("1: Akira Toriyama\n")
   end
 end
