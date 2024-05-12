@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 RSpec.describe LinkedList do
+  let(:head_node){ LinkedList::Node.new('A head value') }
+
 	describe '#new' do
-    let(:head_node){ LinkedList::Node.new('A head value') }
-    let(:wrong_class) { Hash.new }
+   let(:wrong_class) { Hash.new }
 
     context 'with node argument' do
       it 'is truthy' do
@@ -23,6 +24,26 @@ RSpec.describe LinkedList do
     context 'without node argument' do
       it 'is truthy' do
         expect(described_class.new).to be_truthy
+      end
+    end
+  end
+
+  describe '#append(value)' do
+    context 'when append value' do
+      let(:next_node){ LinkedList::Node.new('next node value') }
+
+      it 'keeps head as node_head' do
+        linked_list = described_class.new(head_node)
+        linked_list.append(next_node)
+
+        expect(linked_list.head).to eq(head_node)
+      end
+
+      it 'has next node set as next_node' do
+        linked_list = described_class.new(head_node)
+        linked_list.append(next_node)
+
+        expect(linked_list.head.next_node).to eq(next_node)
       end
     end
   end
