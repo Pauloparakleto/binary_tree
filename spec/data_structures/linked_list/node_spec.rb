@@ -34,4 +34,19 @@ RSpec.describe LinkedList::Node do
 			end
 		end
 	end
+
+	describe '#next_node' do
+		let(:node){ described_class.new }
+
+		it 'is nil by default' do
+			expect(node.next_node).to be_nil
+		end
+
+		it 'sets and gest value' do
+			next_value = 'Next Value'
+			node.next_node = next_value
+
+			expect(node.next_node).to eq(next_value)
+		end
+	end
 end
