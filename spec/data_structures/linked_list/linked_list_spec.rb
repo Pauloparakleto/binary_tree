@@ -38,5 +38,20 @@ RSpec.describe LinkedList do
       end
     end
   end
+
+  describe '#prepend(value)' do
+    let(:prepended_value){ 'A prepended value' }
+    let(:linked_list){ described_class.new(head_value) }
+
+    before { linked_list.prepend(prepended_value) }
+
+    it 'sets new head to preprended value' do
+      expect(linked_list.head.value).to eq(prepended_value)
+    end
+
+    it 'sets head.next_node to old head value' do
+      expect(linked_list.head.next_node.value).to eq(head_value)
+    end
+  end
 end
 
