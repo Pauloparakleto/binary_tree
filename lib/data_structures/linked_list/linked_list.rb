@@ -24,5 +24,6 @@ class LinkedList
     prepended_node = LinkedList::Node.new(value)
     prepended_node.next_node = head
     @head = prepended_node
+    @size += 1
   end
 end

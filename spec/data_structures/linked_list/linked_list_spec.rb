@@ -74,6 +74,18 @@ RSpec.describe LinkedList do
         expect(linked_list.size).to eq(5)
       end
     end
+
+    context 'when prepend value' do
+      before do
+        (1..4).to_a.each do |node_value|
+          linked_list.prepend(node_value)
+        end
+      end
+
+      it 'counts 5' do
+        expect(linked_list.size).to eq(5)
+      end
+    end
   end
 end
 
