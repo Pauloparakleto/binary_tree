@@ -1,11 +1,13 @@
 class LinkedList
-  attr_accessor :node, :head
+  attr_accessor :node, :head, :size
 
   def initialize(value = nil)
     @head = LinkedList::Node.new(value)
     if value.nil?
       raise ArgumentError, 'You must provide a value'
     end
+
+    @size = 1
   end
 
   def append(value)
@@ -15,6 +17,7 @@ class LinkedList
     end
 
     current_node.next_node = LinkedList::Node.new(value)
+    @size += 1
   end
 
   def prepend(value)

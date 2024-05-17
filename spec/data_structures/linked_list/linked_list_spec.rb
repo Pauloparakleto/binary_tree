@@ -53,5 +53,27 @@ RSpec.describe LinkedList do
       expect(linked_list.head.next_node.value).to eq(head_value)
     end
   end
+
+  describe '#size' do
+    let(:linked_list){ described_class.new('value') }
+
+    context 'when initialize list' do
+      it 'is one' do
+        expect(linked_list.size).to eq(1)
+      end
+    end
+
+    context 'when append values' do
+      before do
+        (1..4).to_a.each do |node_value|
+          linked_list.append(node_value)
+        end
+      end
+
+      it 'is 5' do
+        expect(linked_list.size).to eq(5)
+      end
+    end
+  end
 end
 
