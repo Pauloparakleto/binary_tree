@@ -7,6 +7,9 @@ require "simple_writer"
 require "writer_decorator"
 require "numbering_writer"
 require "time_stamping_writer"
+require "data_structures/linked_list/linked_list"
+require "data_structures/linked_list/error"
+require "data_structures/linked_list/node"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
