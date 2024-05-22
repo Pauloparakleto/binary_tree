@@ -26,4 +26,18 @@ class LinkedList
     @head = prepended_node
     @size += 1
   end
+
+  def pop
+    return raise LinkedList::Error, 'Cannot remove node, head is the last node' if size.eql?(1)
+
+    current_node = head
+    while !current_node.next_node.nil?
+      current_node = current_node.next_node
+    end
+
+    tail_value = current_node.value
+    current_node = nil
+    @size -= 1
+    tail_value
+  end
 end

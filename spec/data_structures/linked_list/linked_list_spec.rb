@@ -54,6 +54,28 @@ RSpec.describe LinkedList do
     end
   end
 
+  describe '#pop' do
+    subject(:linked_list){ described_class.new('head_value') }
+    let(:another_value){ 'Another value' }
+
+    before { linked_list }
+
+    context 'when there is only the head node' do
+      it 'raises exception' do
+        expect { linked_list.pop }.to raise_error(LinkedList::Error, 'Cannot remove node, head is the last node')
+      end
+    end
+
+    context 'when there is head and another node' do
+      before { linked_list.append(another_value) }
+
+      it 'removes another node' do
+        expect(linked_list.pop).to eq(another_value)
+        expect(linked_list.size).to eq(1)
+      end
+    end
+  end
+
   describe '#size' do
     let(:linked_list){ described_class.new('value') }
 
