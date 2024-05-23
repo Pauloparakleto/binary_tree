@@ -1,8 +1,10 @@
 class LinkedList
-  attr_accessor :node, :head, :size
+  attr_accessor :node, :head, :size, :current_node
+  attr_reader :tail
 
   def initialize(value = nil)
     @head = LinkedList::Node.new(value)
+    @current_node = head
     if value.nil?
       raise ArgumentError, 'You must provide a value'
     end
@@ -30,14 +32,22 @@ class LinkedList
   def pop
     return raise LinkedList::Error, 'Cannot remove node, head is the last node' if size.eql?(1)
 
+    while !current_node.next_node.next_node.nil?
+      self.current_node = current_node.next_node
+    end
+
+    tail_value = current_node.next_node.value
+    self.current_node.next_node = nil
+    @size -= 1
+    tail_value
+  end
+
+  def tail
     current_node = head
     while !current_node.next_node.nil?
       current_node = current_node.next_node
     end
 
-    tail_value = current_node.value
-    current_node = nil
-    @size -= 1
-    tail_value
+    current_node
   end
 end

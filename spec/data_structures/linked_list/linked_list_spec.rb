@@ -109,5 +109,27 @@ RSpec.describe LinkedList do
       end
     end
   end
+
+  describe '#tail' do
+    let(:linked_list) { described_class.new('value') }
+
+    before { (1..3).to_a.each { |number| linked_list.append(number) } }
+
+    context 'when append' do
+     it 'is 3' do
+       expect(linked_list.tail.class).to eq(LinkedList::Node)
+       expect(linked_list.tail.value).to eq(3)
+     end
+    end
+
+    context 'when pop' do
+      before { linked_list.pop }
+
+      it 'is 2' do
+       expect(linked_list.tail.class).to eq(LinkedList::Node)
+       expect(linked_list.tail.value).to eq(2)
+      end
+    end
+  end
 end
 
