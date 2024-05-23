@@ -14,6 +14,7 @@ class LinkedList
 
   def append(value)
     current_node = head
+    # TODO the while block is similar to tail method
     while !current_node.next_node.nil?
       current_node = current_node.next_node
     end
@@ -37,7 +38,7 @@ class LinkedList
     end
 
     tail_value = current_node.next_node.value
-    self.current_node.next_node = nil
+    current_node.next_node = nil
     @size -= 1
     tail_value
   end
