@@ -13,13 +13,7 @@ class LinkedList
   end
 
   def append(value)
-    current_node = head
-    # TODO the while block is similar to tail method
-    while !current_node.next_node.nil?
-      current_node = current_node.next_node
-    end
-
-    current_node.next_node = LinkedList::Node.new(value)
+    find_tail_node.next_node = LinkedList::Node.new(value)
     @size += 1
   end
 
@@ -44,11 +38,26 @@ class LinkedList
   end
 
   def tail
+    find_tail_node
+  end
+
+  def find(value)
     current_node = head
-    while !current_node.next_node.nil?
+    while !current_node.nil? && !current_node.value.eql?(value)
       current_node = current_node.next_node
     end
 
+    current_node
+  end
+
+  private
+
+  def find_tail_node
+    self.current_node = head
+
+    while !current_node.next_node.nil?
+      self.current_node = current_node.next_node
+    end
     current_node
   end
 end
