@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'byebug'
 require "binary_tree"
 require "binary_search"
 require "node"

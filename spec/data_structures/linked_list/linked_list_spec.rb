@@ -131,5 +131,23 @@ RSpec.describe LinkedList do
       end
     end
   end
+
+  describe '#find' do
+    let(:linked_list) { LinkedList.new('value') }
+
+    before { (1..7).to_a.each { |number| linked_list.append(number) } }
+
+    context 'when node exists' do
+      it 'finds 6' do
+        expect(linked_list.find(6).value).to eq(6)
+      end
+    end
+
+    context 'when node does not exist' do
+      it 'is nil' do
+        expect(linked_list.find(99)).to be_nil
+      end
+    end
+ end
 end
 
