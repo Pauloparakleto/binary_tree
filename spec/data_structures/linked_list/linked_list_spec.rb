@@ -220,7 +220,7 @@ RSpec.describe LinkedList do
       before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
       it 'is false' do
-        expect(linked_list.remove_at(99)).to eq(false)
+        expect(linked_list.remove_at(4)).to eq(false)
       end
     end
   end
