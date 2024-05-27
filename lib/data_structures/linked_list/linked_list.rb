@@ -50,6 +50,15 @@ class LinkedList
     current_node
   end
 
+  def contains?(value)
+    current_node = head
+    while !current_node.nil? && !current_node.value.eql?(value)
+      current_node = current_node.next_node
+    end
+
+    !current_node.nil?
+  end
+
   private
 
   def find_tail_node

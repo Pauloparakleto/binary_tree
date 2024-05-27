@@ -148,6 +148,24 @@ RSpec.describe LinkedList do
         expect(linked_list.find(99)).to be_nil
       end
     end
- end
+  end
+
+  describe '#contains?' do
+    let(:linked_list){ described_class.new('value') }
+
+    before { linked_list.append(1) }
+    
+    context 'when contains' do
+      it 'is true' do
+        expect(linked_list.contains?(1)).to be_truthy
+      end
+    end
+  
+    context 'when does not contain' do
+      it 'is false' do
+         expect(linked_list.contains?(99)).to be_falsey
+      end
+    end
+  end
 end
 
