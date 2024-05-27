@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe LinkedList do
   let(:head_value){ 'A head value' }
+  let(:linked_list) { described_class.new('head') }
 
 	describe '#new' do
    let(:wrong_class) { Hash.new }
@@ -181,6 +182,46 @@ RSpec.describe LinkedList do
       linked_list = described_class.new(1)
       linked_list.append(2)
       expect(linked_list.to_s).to eq('(1) -> (2) -> nil')
+    end
+  end
+
+  describe '#remove_at' do
+    context 'when remove head' do
+      before { linked_list.remove_at(0) }
+
+      it 'has size zero' do
+        expect(linked_list.size).to eq(0)
+      end
+
+      it 'finds nil' do
+        expect(linked_list.find('head')).to be_nil
+      end
+    end
+
+    context 'when remove a node' do
+      before { (1..3).to_a.each { |number| linked_list.append(number) } }
+
+      it 'has size 3' do
+        linked_list.remove_at(2)
+        expect(linked_list.size).to eq(3)
+      end
+
+      it 'finds nil' do
+        linked_list.remove_at(2)
+        expect(linked_list.find(2)).to be_nil
+      end
+
+      it 'is true' do
+        expect(linked_list.remove_at(2)).to eq(true)
+      end
+    end
+
+    context 'when index is beyond list size' do
+      before { (1..3).to_a.each { |number| linked_list.append(number) } }
+
+      it 'is false' do
+        expect(linked_list.remove_at(4)).to eq(false)
+      end
     end
   end
 end
