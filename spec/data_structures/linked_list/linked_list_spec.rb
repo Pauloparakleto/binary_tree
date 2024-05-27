@@ -154,7 +154,7 @@ RSpec.describe LinkedList do
     let(:linked_list){ described_class.new('value') }
 
     before { linked_list.append(1) }
-    
+
     context 'when contains' do
       it 'is true' do
         expect(linked_list.contains?(1)).to be_truthy
@@ -165,6 +165,14 @@ RSpec.describe LinkedList do
       it 'is false' do
          expect(linked_list.contains?(99)).to be_falsey
       end
+    end
+  end
+
+  describe '#any?' do
+    subject(:linked_list){ described_class.new('value') }
+
+    it 'is #contains? alias' do
+      expect(linked_list.method(:contains?)).to eq(linked_list.method(:any?))
     end
   end
 end

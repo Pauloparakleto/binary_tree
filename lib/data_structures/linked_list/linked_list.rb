@@ -51,6 +51,8 @@ class LinkedList
     !current_node.nil?
   end
 
+  alias :any? :contains?
+
   private
 
   def find_first_match(value)
