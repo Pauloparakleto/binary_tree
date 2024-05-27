@@ -14,9 +14,10 @@ class LinkedList
 
   def to_s
     result = ''
+    current_node = head
     while !current_node.nil?
       result << "(#{current_node.value}) -> "
-      self.current_node = current_node.next_node
+      current_node = current_node.next_node
     end
 
     result << 'nil'
@@ -47,6 +48,26 @@ class LinkedList
     @size -= 1
     tail_value
   end
+
+  def remove_at(index)
+    return false if index > size - 1
+    @size -= 1
+    if index.eql?(0)
+      self.head = head.next_node
+      return true
+    end
+
+    current_index = 1
+    self.current_node = head
+    while current_index < index
+      current_index += 1
+      self.current_node = current_node.next_node
+    end
+
+    self.current_node.next_node = current_node.next_node.next_node
+    true
+  end
+
 
   def tail
     find_tail_node
