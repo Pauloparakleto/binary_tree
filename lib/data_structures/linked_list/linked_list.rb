@@ -42,24 +42,24 @@ class LinkedList
   end
 
   def find(value)
-    current_node = head
-    while !current_node.nil? && !current_node.value.eql?(value)
-      current_node = current_node.next_node
-    end
-
+    find_first_match(value)
     current_node
   end
 
   def contains?(value)
-    current_node = head
-    while !current_node.nil? && !current_node.value.eql?(value)
-      current_node = current_node.next_node
-    end
-
+    find_first_match(value)
     !current_node.nil?
   end
 
   private
+
+  def find_first_match(value)
+    self.current_node = head
+
+    while !current_node.nil? && !current_node.value.eql?(value)
+      self.current_node = current_node.next_node
+    end
+  end
 
   def find_tail_node
     self.current_node = head
