@@ -175,5 +175,13 @@ RSpec.describe LinkedList do
       expect(linked_list.method(:contains?)).to eq(linked_list.method(:any?))
     end
   end
+
+  describe '#to_s' do
+    it 'prints linked list' do
+      linked_list = described_class.new(1)
+      linked_list.append(2)
+      expect(linked_list.to_s).to eq('(1) -> (2) -> nil')
+    end
+  end
 end
 

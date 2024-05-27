@@ -12,6 +12,17 @@ class LinkedList
     @size = 1
   end
 
+  def to_s
+    result = ''
+    while !current_node.nil?
+      result << "(#{current_node.value}) -> "
+      self.current_node = current_node.next_node
+    end
+
+    result << 'nil'
+    result
+  end
+
   def append(value)
     find_tail_node.next_node = LinkedList::Node.new(value)
     @size += 1
