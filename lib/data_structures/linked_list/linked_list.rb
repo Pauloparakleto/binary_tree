@@ -51,6 +51,7 @@ class LinkedList
 
   def remove_at(index)
     return false if index > size - 1
+
     @size -= 1
     if index.eql?(0)
       self.head = head.next_node
@@ -97,12 +98,8 @@ class LinkedList
   end
 
   def insert_at(index, value)
-    if index.eql?(0)
-      node = LinkedList::Node.new(value)
-      node.next_node = head
-      self.head = node
-      return true
-    end
+    return prepend(value) if index.eql?(0)
+
     self.current_node = head
     current_index = 1
     while current_index < index
