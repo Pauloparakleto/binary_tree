@@ -85,15 +85,37 @@ class LinkedList
 
   def at(index)
     return if index > size - 1
-    
+
     current_index = 0
-    current_node = head
+    self.current_node = head
     while current_index < index
-      current_node = current_node.next_node
+      self.current_node = current_node.next_node
       current_index += 1
     end
 
     current_node
+  end
+
+  def insert_at(index, value)
+    if index.eql?(0)
+      node = LinkedList::Node.new(value)
+      node.next_node = head
+      self.head = node
+      return true
+    end
+    self.current_node = head
+    current_index = 1
+    while current_index < index
+      self.current_node = current_node.next_node
+      current_index += 1
+    end
+    node = LinkedList::Node.new(value)
+    next_node = current_node.next_node
+
+    current_node.next_node = node
+    node.next_node = next_node
+    @size += 1
+    true
   end
 
   alias :any? :contains?

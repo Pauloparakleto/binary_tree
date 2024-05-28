@@ -247,6 +247,25 @@ RSpec.describe LinkedList do
         expect(linked_list.at(4)).to be_nil
       end
     end
- end
+  end
+
+  describe '#insert_at' do
+    before { (1..3).to_a.each { |number| linked_list.append(number) } }
+
+    it 'inserts value' do
+      linked_list.insert_at(0, 'new head')
+      expect(linked_list.head.value).to eq('new head')
+    end 
+
+     it 'inserts value at index 1' do
+      linked_list.insert_at(1, 'new value 1')
+      expect(linked_list.at(1).value).to eq('new value 1')
+     end
+
+    it 'inserts value at index 2' do
+      linked_list.insert_at(2, 'new value 2')
+      expect(linked_list.at(2).value).to eq('new value 2')
+    end
+  end
 end
 
