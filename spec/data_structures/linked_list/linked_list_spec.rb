@@ -224,5 +224,29 @@ RSpec.describe LinkedList do
       end
     end
   end
+
+  describe '#at' do
+    before { (1..3).to_a.each { |number| linked_list.append(number) } }
+
+    context 'when between size range' do
+      it 'returns value at head' do
+        expect(linked_list.at(0).value).to eq('head')
+      end
+
+      it 'returns tail value' do
+        expect(linked_list.at(3).value).to eq(3)
+      end
+
+      it 'returns a middle value' do
+        expect(linked_list.at(2).value).to eq(2)
+      end
+    end
+
+    context 'when out of range' do
+      it 'is nil' do
+        expect(linked_list.at(4)).to be_nil
+      end
+    end
+ end
 end
 
