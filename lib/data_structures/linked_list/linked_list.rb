@@ -85,6 +85,8 @@ class LinkedList
   end
 
   def at(index)
+    raise LinkedList::Error, 'You must provide a positive index' if index.negative?
+
     return if index > size - 1
 
     current_index = 0
