@@ -247,6 +247,12 @@ RSpec.describe LinkedList do
         expect(linked_list.at(4)).to be_nil
       end
     end
+
+    context 'when negative index' do
+      it 'raises argument error' do
+        expect{ linked_list.at(-1) }.to raise_error(LinkedList::Error, 'You must provide a positive index')
+      end
+    end
   end
 
   describe '#insert_at' do
