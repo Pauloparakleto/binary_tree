@@ -35,7 +35,14 @@ RSpec.describe DoubleLinkedList do
         linked_list = described_class.new(head_value)
         linked_list.append(next_value)
 
-        expect(linked_list.head.next_node.value).to eq(next_value)
+        expect(linked_list.head.next.value).to eq(next_value)
+      end
+
+      it 'has next parent node as head' do
+        linked_list = described_class.new(head_value)
+        linked_list.append(next_value)
+
+        expect(linked_list.head.next.previous.value).to eq(head_value)
       end
     end
   end
@@ -50,8 +57,12 @@ RSpec.describe DoubleLinkedList do
       expect(linked_list.head.value).to eq(prepended_value)
     end
 
-    it 'sets head.next_node to old head value' do
-      expect(linked_list.head.next_node.value).to eq(head_value)
+    it 'sets head.next to old head value' do
+      expect(linked_list.head.next.value).to eq(head_value)
+    end
+  
+    it 'sets head.next.previous to prepended value' do
+      expect(linked_list.head.next.previous.value).to eq(prepended_value)
     end
   end
 
