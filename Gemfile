@@ -12,3 +12,4 @@ gem "rspec", "~> 3.0"
 #gem "rubocop"
 
 gem "byebug", "~> 11.1"
+gem 'rubocop', group: 'development', require: false
