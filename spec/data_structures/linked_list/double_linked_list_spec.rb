@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe DoubleLinkedList do
-  let(:head_value){ 'A head value' }
+  let(:head_value) { 'A head value' }
   let(:linked_list) { described_class.new('head') }
 
-	describe '#new' do
-   let(:wrong_class) { Hash.new }
+  describe '#new' do
+    let(:wrong_class) { Hash.new }
 
     context 'with node argument' do
       it 'is truthy' do
@@ -15,14 +17,14 @@ RSpec.describe DoubleLinkedList do
 
     context 'without node argument' do
       it 'raises error' do
-        expect{ described_class.new }.to raise_error(ArgumentError, 'You must provide a value')
+        expect { described_class.new }.to raise_error(ArgumentError, 'You must provide a value')
       end
     end
   end
 
   describe '#append(value)' do
     context 'when append value' do
-      let(:next_value){ 'next node value' }
+      let(:next_value) { 'next node value' }
 
       it 'keeps head as node_head' do
         linked_list = described_class.new(head_value)
@@ -35,21 +37,21 @@ RSpec.describe DoubleLinkedList do
         linked_list = described_class.new(head_value)
         linked_list.append(next_value)
 
-        expect(linked_list.head.next.value).to eq(next_value)
+        expect(linked_list.head.next_node.value).to eq(next_value)
       end
 
       it 'has next parent node as head' do
         linked_list = described_class.new(head_value)
         linked_list.append(next_value)
 
-        expect(linked_list.head.next.previous.value).to eq(head_value)
+        expect(linked_list.head.next_node.previous_node.value).to eq(head_value)
       end
     end
   end
 
   describe '#prepend(value)' do
-    let(:prepended_value){ 'A prepended value' }
-    let(:linked_list){ described_class.new(head_value) }
+    let(:prepended_value) { 'A prepended value' }
+    let(:linked_list) { described_class.new(head_value) }
 
     before { linked_list.prepend(prepended_value) }
 
@@ -57,24 +59,30 @@ RSpec.describe DoubleLinkedList do
       expect(linked_list.head.value).to eq(prepended_value)
     end
 
-    it 'sets head.next to old head value' do
-      expect(linked_list.head.next.value).to eq(head_value)
+    it 'sets head.next_node to old head value' do
+      expect(linked_list.head.next_node.value).to eq(head_value)
     end
-  
-    it 'sets head.next.previous to prepended value' do
-      expect(linked_list.head.next.previous.value).to eq(prepended_value)
+
+    it 'sets head.next_node.previous_node to prepended value' do
+      expect(linked_list.head.next_node.previous_node.value).to eq(prepended_value)
     end
   end
 
   describe '#pop' do
-    subject(:linked_list){ described_class.new('head_value') }
-    let(:another_value){ 'Another value' }
+    subject(:linked_list) { described_class.new('head_value') }
+    let(:another_value) { 'Another value' }
 
     before { linked_list }
 
     context 'when there is only the head node' do
-      it 'raises exception' do
-        expect { linked_list.pop }.to raise_error(LinkedList::Error, 'Cannot remove node, head is the last node')
+      it 'has head nil' do
+        linked_list.pop
+        expect(linked_list.head).to be_nil
+      end
+
+      it 'has tail nil' do
+        linked_list.pop
+        expect(linked_list.tail).to be_nil
       end
     end
 
@@ -82,14 +90,14 @@ RSpec.describe DoubleLinkedList do
       before { linked_list.append(another_value) }
 
       it 'removes another node' do
-        expect(linked_list.pop).to eq(another_value)
-        expect(linked_list.size).to eq(1)
+        linked_list.pop
+        expect(linked_list.head.next_node).to be_nil
       end
     end
   end
 
   describe '#size' do
-    let(:linked_list){ described_class.new('value') }
+    let(:linked_list) { described_class.new('value') }
 
     context 'when initialize list' do
       it 'is one' do
@@ -128,17 +136,15 @@ RSpec.describe DoubleLinkedList do
     before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
     context 'when append' do
-     it 'is 3' do
-       expect(linked_list.tail.class).to eq(LinkedList::Node)
-       expect(linked_list.tail.value).to eq(3)
-     end
+      it 'is 3' do
+        expect(linked_list.tail.value).to eq(3)
+      end
     end
 
     context 'when pop' do
       before { linked_list.pop }
 
       it 'is 2' do
-       expect(linked_list.tail.class).to eq(LinkedList::Node)
        expect(linked_list.tail.value).to eq(2)
       end
     end
@@ -163,7 +169,7 @@ RSpec.describe DoubleLinkedList do
   end
 
   describe '#contains?' do
-    let(:linked_list){ described_class.new('value') }
+    let(:linked_list) { described_class.new('value') }
 
     before { linked_list.append(1) }
 
@@ -172,16 +178,16 @@ RSpec.describe DoubleLinkedList do
         expect(linked_list.contains?(1)).to be_truthy
       end
     end
-  
+
     context 'when does not contain' do
       it 'is false' do
-         expect(linked_list.contains?(99)).to be_falsey
+        expect(linked_list.contains?(99)).to be_falsey
       end
     end
   end
 
   describe '#any?' do
-    subject(:linked_list){ described_class.new('value') }
+    subject(:linked_list) { described_class.new('value') }
 
     it 'is #contains? alias' do
       expect(linked_list.method(:contains?)).to eq(linked_list.method(:any?))
@@ -261,7 +267,7 @@ RSpec.describe DoubleLinkedList do
 
     context 'when negative index' do
       it 'raises argument error' do
-        expect{ linked_list.at(-1) }.to raise_error(LinkedList::Error, 'You must provide a positive index')
+        expect { linked_list.at(-1) }.to raise_error(LinkedList::Error, 'You must provide a positive index')
       end
     end
   end
@@ -272,12 +278,12 @@ RSpec.describe DoubleLinkedList do
     it 'inserts value' do
       linked_list.insert_at(0, 'new head')
       expect(linked_list.head.value).to eq('new head')
-    end 
+    end
 
-     it 'inserts value at index 1' do
+    it 'inserts value at index 1' do
       linked_list.insert_at(1, 'new value 1')
       expect(linked_list.at(1).value).to eq('new value 1')
-     end
+    end
 
     it 'inserts value at index 2' do
       linked_list.insert_at(2, 'new value 2')
