@@ -65,7 +65,7 @@ class LinkedList
       self.current_node = current_node.next_node
     end
 
-    self.current_node.next_node = current_node.next_node.next_node
+    current_node.next_node = current_node.next_node.next_node
     true
   end
 
