@@ -10,7 +10,10 @@ require './lib/numbering_writer'
 require './lib/check_summing_writer'
 require './lib/time_stamping_writer'
 require './lib/data_structures/linked_list/linked_list'
+require './lib/data_structures/linked_list/double_linked_list'
+require './lib/data_structures/linked_list/circular_linked_list'
 require './lib/data_structures/linked_list/node'
+require './lib/data_structures/linked_list/double_node'
 
 # You can add fixtures and/or initialization code here to make experimenting
 # with your gem easier. You can also use a different console, if you like.
