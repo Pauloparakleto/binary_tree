@@ -146,7 +146,7 @@ RSpec.describe CircularLinkedList do
   end
 
   describe '#find' do
-    let(:linked_list) { LinkedList.new('value') }
+    let(:linked_list) { described_class.new('value') }
 
     before { (1..7).to_a.each { |number| linked_list.append(number) } }
 

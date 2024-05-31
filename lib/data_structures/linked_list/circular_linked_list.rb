@@ -39,4 +39,13 @@ class CircularLinkedList
       head.previous_node.next_node = head
     end
   end
+
+  def find(value)
+    head.value = value
+    current_node = head.next_node
+    while current_node.value != value
+      current_node = current_node.next_node
+    end
+    current_node unless current_node == head
+  end
 end
