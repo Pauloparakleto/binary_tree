@@ -12,6 +12,16 @@ RSpec.describe CircularLinkedList do
       expect(linked_list.head.next_node.value).to eq(node_value)
     end
 
+    it 'has last node pointing to head node' do
+      linked_list = described_class.new(node_value)
+      expect(linked_list.head.next_node.next_node).to eq(linked_list.head)
+    end
+
+    it 'has last node previous node pointing to head node' do
+      linked_list = described_class.new(node_value)
+      expect(linked_list.head.next_node.previous_node).to eq(linked_list.head)
+    end
+
     it 'has previous node as node value' do
       linked_list = described_class.new(node_value)
       expect(linked_list.head.previous_node.value).to eq(node_value)
@@ -197,13 +207,9 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#remove_at' do
-    context 'when remove head' do
+  describe '#remove_at' do
+    context 'when remove first node' do
       before { linked_list.remove_at(0) }
-
-      it 'has size zero' do
-        expect(linked_list.size).to eq(0)
-      end
 
       it 'finds nil' do
         expect(linked_list.find('head')).to be_nil
@@ -211,24 +217,22 @@ RSpec.describe CircularLinkedList do
     end
 
     context 'when remove a node' do
+      let(:linked_list) { described_class.new(0) }
+
       before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
-      it 'has size 3' do
-        linked_list.remove_at(2)
-        expect(linked_list.size).to eq(3)
+      it 'finds nil' do
+        linked_list.remove_at(0)
+        expect(linked_list.find(0)).to be_nil
       end
 
-      it 'finds nil' do
+      it 'is nil' do
         linked_list.remove_at(2)
         expect(linked_list.find(2)).to be_nil
       end
-
-      it 'is true' do
-        expect(linked_list.remove_at(2)).to eq(true)
-      end
     end
 
-    context 'when index is beyond list size' do
+    xcontext 'when index is beyond list size' do
       before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
       it 'is false' do

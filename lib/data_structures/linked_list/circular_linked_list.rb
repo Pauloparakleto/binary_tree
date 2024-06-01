@@ -5,9 +5,9 @@ class CircularLinkedList
 
   def initialize(value)
     @head = LinkedList::DoubleNode.new
-    head.next_node = head
-    head.previous_node = head
     node = LinkedList::DoubleNode.new(value)
+    node.next_node = head
+    node.previous_node = head
     head.next_node = node
     head.previous_node = node
   end
@@ -54,4 +54,15 @@ class CircularLinkedList
   end
 
   alias any? contains?
+
+  def remove_at(index)
+    current_index = 0
+    current_node = head.next_node
+    while current_index < index
+      current_node = current_node.next_node
+      current_index += 1
+    end
+    current_node.previous_node.next_node = current_node.next_node
+    current_node.next_node.previous_node = current_node.previous_node
+  end
 end
