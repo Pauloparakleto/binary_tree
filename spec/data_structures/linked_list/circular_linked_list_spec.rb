@@ -12,6 +12,16 @@ RSpec.describe CircularLinkedList do
       expect(linked_list.head.next_node.value).to eq(node_value)
     end
 
+    it 'has last node pointing to head node' do
+      linked_list = described_class.new(node_value)
+      expect(linked_list.head.next_node.next_node).to eq(linked_list.head)
+    end
+
+    it 'has last node previous node pointing to head node' do
+      linked_list = described_class.new(node_value)
+      expect(linked_list.head.next_node.previous_node).to eq(linked_list.head)
+    end
+
     it 'has previous node as node value' do
       linked_list = described_class.new(node_value)
       expect(linked_list.head.previous_node.value).to eq(node_value)

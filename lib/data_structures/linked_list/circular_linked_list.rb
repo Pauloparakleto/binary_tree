@@ -5,9 +5,9 @@ class CircularLinkedList
 
   def initialize(value)
     @head = LinkedList::DoubleNode.new
-    head.next_node = head
-    head.previous_node = head
     node = LinkedList::DoubleNode.new(value)
+    node.next_node = head
+    node.previous_node = head
     head.next_node = node
     head.previous_node = node
   end
