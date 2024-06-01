@@ -163,7 +163,7 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#contains?' do
+  describe '#contains?' do
     let(:linked_list) { described_class.new('value') }
 
     before { linked_list.append(1) }
@@ -181,7 +181,7 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#any?' do
+  describe '#any?' do
     subject(:linked_list) { described_class.new('value') }
 
     it 'is #contains? alias' do

@@ -48,4 +48,10 @@ class CircularLinkedList
     end
     current_node unless current_node == head
   end
+
+  def contains?(value)
+    !find(value).nil?
+  end
+
+  alias any? contains?
 end
