@@ -54,4 +54,15 @@ class CircularLinkedList
   end
 
   alias any? contains?
+
+  def remove_at(index)
+    current_index = 0
+    current_node = head.next_node
+    while current_index < index
+      current_node = current_node.next_node
+      current_index += 1
+    end
+    current_node.previous_node.next_node = current_node.next_node
+    current_node.next_node.previous_node = current_node.previous_node
+  end
 end
