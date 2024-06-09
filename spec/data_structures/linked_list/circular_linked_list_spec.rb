@@ -101,8 +101,8 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#size' do
-    let(:linked_list) { described_class.new('value') }
+  describe '#size' do
+    let(:linked_list) { described_class.new(0) }
 
     context 'when initialize list' do
       it 'is one' do
@@ -119,6 +119,14 @@ RSpec.describe CircularLinkedList do
 
       it 'is 5' do
         expect(linked_list.size).to eq(5)
+      end
+
+      context 'when remove_at index' do
+        before { linked_list.remove_at(2) }
+
+        it 'is 4' do
+          expect(linked_list.size).to eq(4)
+        end
       end
     end
 
@@ -241,12 +249,13 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#at' do
+  describe '#at' do
+    let(:linked_list) { described_class.new(0) }
     before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
     context 'when between size range' do
-      it 'returns value at head' do
-        expect(linked_list.at(0).value).to eq('head')
+      it 'returns value at index 0' do
+        expect(linked_list.at(0).value).to eq(0)
       end
 
       it 'returns tail value' do
@@ -260,13 +269,13 @@ RSpec.describe CircularLinkedList do
 
     context 'when out of range' do
       it 'is nil' do
-        expect(linked_list.at(4)).to be_nil
+        expect(linked_list.at(5)).to be_nil
       end
     end
 
     context 'when negative index' do
       it 'raises argument error' do
-        expect { linked_list.at(-1) }.to raise_error(LinkedList::Error, 'You must provide a positive index')
+        expect { linked_list.at(-1) }.to raise_error(CircularLinkedList::Error, 'You must provide a positive index')
       end
     end
   end

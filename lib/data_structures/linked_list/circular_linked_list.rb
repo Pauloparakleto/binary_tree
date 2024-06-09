@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CircularLinkedList
-  attr_accessor :head
+  attr_accessor :head, :size
 
   def initialize(value)
     @head = LinkedList::DoubleNode.new
@@ -10,10 +10,12 @@ class CircularLinkedList
     node.previous_node = head
     head.next_node = node
     head.previous_node = node
+    @size = 1
   end
 
   def append(value)
     node = LinkedList::DoubleNode.new(value)
+    @size += 1
     node.next_node = head
     node.previous_node = head.previous_node
     head.previous_node.next_node = node
@@ -22,6 +24,7 @@ class CircularLinkedList
 
   def prepend(value)
     node = LinkedList::DoubleNode.new(value)
+    @size += 1
     node.next_node = head.next_node
     node.previous_node = head
     head.next_node.previous_node = node
@@ -29,6 +32,7 @@ class CircularLinkedList
   end
 
   def pop
+    @size -= 1
     if head.next_node.next_node.nil?
       head.previous_node = nil
       head.next_node = nil
@@ -49,6 +53,19 @@ class CircularLinkedList
     current_node unless current_node == head
   end
 
+  def at(index)
+    return nil if index > size
+    raise CircularLinkedList::Error, 'You must provide a positive index' if index.negative?
+
+    current_index = 0
+    current_node = head.next_node
+    while current_index < index
+      current_node = current_node.next_node
+      current_index += 1
+    end
+    current_node
+  end
+
   def contains?(value)
     !find(value).nil?
   end
@@ -56,6 +73,7 @@ class CircularLinkedList
   alias any? contains?
 
   def remove_at(index)
+    @size -= 1
     current_index = 0
     current_node = head.next_node
     while current_index < index

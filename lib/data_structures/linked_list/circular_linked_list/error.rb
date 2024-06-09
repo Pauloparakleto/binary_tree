@@ -1,0 +1,1 @@
+class CircularLinkedList::Error < StandardError;end
