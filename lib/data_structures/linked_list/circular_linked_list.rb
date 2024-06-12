@@ -73,6 +73,8 @@ class CircularLinkedList
   alias any? contains?
 
   def remove_at(index)
+    raise CircularLinkedList::Error, 'Index out of range' if index.eql?(size)
+
     @size -= 1
     target_node = at(index)
     target_node.previous_node.next_node = target_node.next_node
