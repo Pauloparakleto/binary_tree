@@ -44,6 +44,15 @@ class CircularLinkedList
     end
   end
 
+  def insert_at(index, value)
+    node = LinkedList::DoubleNode.new(value)
+    target_node = at(index)
+    target_node.previous_node.next_node = node
+    target_node.previous_node = node
+    node.next_node = target_node
+    node.previous_node = target_node.previous_node
+  end
+
   def find(value)
     head.value = value
     current_node = head.next_node
