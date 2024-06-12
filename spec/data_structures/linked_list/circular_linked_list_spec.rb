@@ -216,6 +216,8 @@ RSpec.describe CircularLinkedList do
   end
 
   describe '#remove_at' do
+    let(:linked_list) { described_class.new(0) }
+
     context 'when remove first node' do
       before { linked_list.remove_at(0) }
 
@@ -224,9 +226,13 @@ RSpec.describe CircularLinkedList do
       end
     end
 
-    context 'when remove a node' do
-      let(:linked_list) { described_class.new(0) }
+    context 'when index is out of range' do
+      it 'raises argument error' do
+        expect { linked_list.remove_at(1) }.to raise_error(CircularLinkedList::Error, 'Index out of range')
+      end
+    end
 
+    context 'when remove a node' do
       before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
       it 'finds nil' do
