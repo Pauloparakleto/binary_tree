@@ -286,12 +286,14 @@ RSpec.describe CircularLinkedList do
     end
   end
 
-  xdescribe '#insert_at' do
+  describe '#insert_at' do
+    let(:linked_list) { described_class.new('first value') }
+
     before { (1..3).to_a.each { |number| linked_list.append(number) } }
 
     it 'inserts value' do
-      linked_list.insert_at(0, 'new head')
-      expect(linked_list.head.value).to eq('new head')
+      linked_list.insert_at(0, 'new first value')
+      expect(linked_list.at(0).value).to eq('new first value')
     end
 
     it 'inserts value at index 1' do
