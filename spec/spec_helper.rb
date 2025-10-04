@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'byebug'
-require "binary_tree"
+require "morse_binary_tree"
 require "binary_search"
 require "node"
 require "simple_writer"
