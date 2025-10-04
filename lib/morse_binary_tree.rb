@@ -2,7 +2,7 @@
 
 #require_relative "binary_tree/version"
 
-class BinaryTree
+class MorseBinaryTree
   attr_accessor :root
 
   def initialize(node=Node.new)

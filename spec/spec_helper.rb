@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'byebug'
-require "binary_tree"
+require "morse_binary_tree"
 require "binary_search"
 require "node"
 require "simple_writer"
@@ -9,6 +9,7 @@ require "writer_decorator"
 require "numbering_writer"
 require "time_stamping_writer"
 require "data_structures/linked_list/linked_list"
+require "data_structures/b_tree"
 require "data_structures/linked_list/double_linked_list"
 require "data_structures/linked_list/circular_linked_list"
 require "data_structures/linked_list/circular_linked_list/error"

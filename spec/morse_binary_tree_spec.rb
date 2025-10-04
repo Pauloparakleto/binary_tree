@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe BinaryTree do
+RSpec.describe MorseBinaryTree do
   subject(:binary_tree) do
     described_class.new(root)
   end
