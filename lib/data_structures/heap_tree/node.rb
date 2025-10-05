@@ -1,9 +1,9 @@
 module HeapTree
-  class Node
-    attr_accessor :left, :right, :value, :parent
+  class Node < BinaryNode
+    attr_accessor :parent
 
     def initialize(value = nil)
-      @value = value
+      super
     end
   end
 end
