@@ -4,6 +4,7 @@ require 'byebug'
 require "morse_binary_tree"
 require "binary_search"
 require "node"
+require "binary_node"
 require "simple_writer"
 require "writer_decorator"
 require "numbering_writer"
