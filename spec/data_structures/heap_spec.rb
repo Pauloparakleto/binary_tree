@@ -6,10 +6,10 @@ RSpec.describe Heap do
   end
 
   it 'max heapify' do
-    node = Binary::Node.new(4)
+    node = HeapTree::Node.new(4)
     heap = described_class.new(node)
-    heap.head.left = Binary::Node.new(2)
-    heap.head.right = Binary::Node.new(8)
+    heap.head.left = HeapTree::Node.new(2)
+    heap.head.right = HeapTree::Node.new(8)
 
     heap.max_heapify
 
