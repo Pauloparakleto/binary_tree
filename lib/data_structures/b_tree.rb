@@ -14,7 +14,7 @@ class BTree
   attr_accessor :head, :current_node
 
   def initialize(head = nil)
-    @head = Binary::Node.new
+    @head = head || Binary::Node.new
     @values = []
   end
 
