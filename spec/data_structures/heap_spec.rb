@@ -42,4 +42,22 @@ RSpec.describe Heap do
       expect(heap.head.right.value).to eq(8)
     end
   end
+
+  context 'when the initial head value is less then left and right side' do
+    before do
+      heap.head = HeapTree::Node.new(2)
+      heap.head.right = HeapTree::Node.new(16)
+      heap.head.left = HeapTree::Node.new(8)
+      heap.head.left.parent = node
+      heap.head.right.parent = node
+    end
+
+    it 'max heapify' do
+      heap.max_heapify
+
+      expect(heap.head.value).to eq(16)
+      expect(heap.head.left.value).to eq(2)
+      expect(heap.head.right.value).to eq(8)
+    end
+  end
 end
