@@ -10,11 +10,20 @@ class Heap < BTree
     parent = node
     max_value = parent.value
     left_node = parent.left
+    right_node = parent.right
     if parent.value < left_node.value
       parent_value = parent.value
       value = left_node.value
       parent.value = value
       left_node.value = parent_value
     end
+
+    if parent.value < right_node.value
+      parent_value = parent.value
+      value = right_node.value
+      parent.value = value
+      right_node.value = parent_value
+    end
+
   end
 end
