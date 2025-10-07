@@ -4,17 +4,17 @@ class Heap < BTree
     super(@head)
   end
 
-  def max_heapify(node = @head.left)
+  def max_heapify(node = @head)
     return if node.nil?
 
-    current = node
-    parent = current.parent
-    max_value = current.value
-    if parent.value < current.value
-      parent_value = node.parent.value
-      value = current.value
+    parent = node
+    max_value = parent.value
+    left_node = parent.left
+    if parent.value < left_node.value
+      parent_value = parent.value
+      value = left_node.value
       parent.value = value
-      current.value = parent_value
+      left_node.value = parent_value
     end
   end
 end
