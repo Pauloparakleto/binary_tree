@@ -5,7 +5,6 @@ class Heap < BTree
   end
 
   def max_heapify(node = @head)
-    return if node.nil?
 
     parent = node
     max_value = parent.value
@@ -25,5 +24,6 @@ class Heap < BTree
       right_node.value = parent_value
     end
 
+    max_heapify(parent.left)
   end
 end
