@@ -24,4 +24,11 @@ class Heap
 
     left_child_index
   end
+
+  def value_of_left_child(index)
+    left_child_index = index_of_left_child(index)
+    return if left_child_index.nil?
+
+    list[index_of_left_child(index)]
+  end
 end
