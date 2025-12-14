@@ -17,4 +17,11 @@ class Heap
 
     @list[index_of_parent(index)]
   end
+
+  def index_of_left_child(index)
+    left_child_index = (2 * index) + 1
+    return if left_child_index > list.length - 1
+
+    left_child_index
+  end
 end

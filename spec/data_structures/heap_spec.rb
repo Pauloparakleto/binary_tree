@@ -33,7 +33,7 @@ RSpec.describe Heap do
 
   describe "#index_of_left_child" do
     it 'get index_of_left_child' do
-      expect(heap.index_of_left_child(0)).to be_one
+      expect(heap.index_of_left_child(0)).to eq(1)
       expect(heap.index_of_left_child(1)).to eq(3)
       expect(heap.index_of_left_child(2)).to eq(5)
       expect(heap.index_of_left_child(4)).to eq(9)
