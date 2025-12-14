@@ -1,30 +1,20 @@
-class Heap < BTree
-  def initialize(head = nil)
-    @head = head
-    super(@head)
+class Heap
+  attr_reader :list
+
+  def initialize(list)
+    @list = list
   end
 
-  def max_heapify(node = @head)
-    return if node.left.nil?
+  def index_of_parent(index)
+    parent_index = (index - 1) / 2
+    return if parent_index.negative?
 
-    parent = node
-    max_value = parent.value
-    left_node = parent.left
-    right_node = parent.right
-    if parent.value < left_node.value
-      parent_value = parent.value
-      value = left_node.value
-      parent.value = value
-      left_node.value = parent_value
-    end
+    parent_index
+  end
 
-    if parent.value < right_node.value
-      parent_value = parent.value
-      value = right_node.value
-      parent.value = value
-      right_node.value = parent_value
-    end
+  def value_of_parent(index)
+    return if index_of_parent(index).nil?
 
-    max_heapify(parent.left)
+    @list[index_of_parent(index)]
   end
 end
