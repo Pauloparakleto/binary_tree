@@ -1,5 +1,5 @@
 class Heap
-  attr_reader :list
+  private attr_reader :list
 
   def initialize(list)
     @list = list

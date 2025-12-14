@@ -4,13 +4,6 @@ RSpec.describe Heap do
   subject(:heap) { described_class.new(list) }
   let(:list) { [16, 14, 10, 8, 7, 9, 3, 2, 4, 1] }
 
-  describe "#list" do
-
-    it 'get the list' do
-      expect(heap.list).to eq(list)
-    end
-  end
-
   describe "#index_of_parent" do
     it 'get parent' do
       expect(heap.index_of_parent(0)).to be_nil
