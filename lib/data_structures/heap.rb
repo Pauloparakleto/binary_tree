@@ -29,6 +29,6 @@ class Heap
     left_child_index = index_of_left_child(index)
     return if left_child_index.nil?
 
-    list[index_of_left_child(index)]
+    list[left_child_index]
   end
 end
